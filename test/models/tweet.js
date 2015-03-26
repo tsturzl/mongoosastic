@@ -1,8 +1,7 @@
 var mongoose  = require('mongoose')
   , Schema    = mongoose.Schema
   , mongoosastic = require('../../lib/mongoosastic');
-
-mongoosastic.connect();
+require('./connect');
 
 // -- simplest indexing... index all fields
 var TweetSchema = new Schema({

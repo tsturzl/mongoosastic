@@ -6,10 +6,12 @@ var mongoose  = require('mongoose')
   , async     = require('async')
   , mongoosastic = require('../lib/mongoosastic');
 
+mongoosastic.connect();
+
 var BookSchema = new Schema({
   title: String
 });
-BookSchema.plugin(mongoosastic);
+BookSchema.plugin(mongoosastic.plugin);
 
 var Book = mongoose.model('Book', BookSchema);
 

@@ -6,6 +6,7 @@ var mongoose  = require('mongoose')
   , ObjectId  = Schema.ObjectId
   , mongoosastic = require('../lib/mongoosastic');
 
+mongoosastic.connect();
 
 var GeoSchema;
 
@@ -31,7 +32,7 @@ describe('GeoTest', function(){
               }
           });
 
-        GeoSchema.plugin(mongoosastic);
+        GeoSchema.plugin(mongoosastic.plugin);
         GeoModel = mongoose.model('geodoc', GeoSchema);
         
         GeoModel.createMapping(function(err, mapping){

@@ -6,13 +6,15 @@ var mongoose  = require('mongoose')
   , async     = require('async')
   , mongoosastic = require('../lib/mongoosastic');
 
+mongoosastic.connect();
+
 var BondSchema = new Schema({
     name: String
   , type: {type:String, default:'Other Bond'}
   , price: Number
 });
 
-BondSchema.plugin(mongoosastic);
+BondSchema.plugin(mongoosastic.plugin);
 
 var Bond = mongoose.model('Bond', BondSchema);
 

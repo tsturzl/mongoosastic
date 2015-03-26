@@ -7,6 +7,8 @@ var mongoose  = require('mongoose')
   , mongoosastic = require('../lib/mongoosastic')
   , Tweet = require('./models/tweet');
 
+mongoosastic.connect();
+
 // -- Only index specific field
 var TalkSchema = new Schema({
     speaker: String
@@ -15,7 +17,7 @@ var TalkSchema = new Schema({
   , abstract: {type:String, es_indexed:true}
   , bio: String
 });
-TalkSchema.plugin(mongoosastic)
+TalkSchema.plugin(mongoosastic.plugin)
 
 var Talk = mongoose.model("Talk", TalkSchema);
 
@@ -28,7 +30,7 @@ var PersonSchema = new Schema({
     , died: {type: Number, es_indexed:true}
   }
 });
-PersonSchema.plugin(mongoosastic, {
+PersonSchema.plugin(mongoosastic.plugin, {
   index:'people'
 , type: 'dude'
 , hydrate: true
@@ -356,7 +358,7 @@ describe('indexing', function(){
       var BumSchema = new Schema({
         name: String
       });
-      BumSchema.plugin(mongoosastic, {
+      BumSchema.plugin(mongoosastic.plugin, {
           index: 'ms_sample'
         , type: 'bum'
       });

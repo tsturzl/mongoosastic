@@ -6,10 +6,12 @@ var mongoose = require('mongoose'),
   async = require('async'),
   mongoosastic = require('../lib/mongoosastic');
 
+mongoosastic.connect();
+
 var DummySchema = new Schema({
   text: String
 });
-DummySchema.plugin(mongoosastic);
+DummySchema.plugin(mongoosastic.plugin);
 
 var Dummy = mongoose.model('Dummy', DummySchema);
 

@@ -2,6 +2,8 @@ var mongoose  = require('mongoose')
   , Schema    = mongoose.Schema
   , mongoosastic = require('../../lib/mongoosastic');
 
+mongoosastic.connect();
+
 // -- simplest indexing... index all fields
 var TweetSchema = new Schema({
     user: String
@@ -10,6 +12,6 @@ var TweetSchema = new Schema({
   , message: String
 });
 
-TweetSchema.plugin(mongoosastic)
+TweetSchema.plugin(mongoosastic.plugin);
 
 module.exports = mongoose.model('Tweet', TweetSchema);
